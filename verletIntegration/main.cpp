@@ -1,11 +1,13 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 
-#include "particle.h"
+#include "Particle.h"
 
 const int WIDTH = 1080;
 const int HEIGHT = 720;
 const float PARTICLE_RADIUS = 30.0f;
+const float GRAVITY = 9.8f;
+const float TIME_STEP = 0.008f;
 
 int main()
 {
@@ -24,6 +26,13 @@ int main()
 			{
 				window.close();
 			}
+		}
+
+		// apply gravity
+		for (auto& particle : particles)
+		{
+			particle.apply_force(sf::Vector2f(0, GRAVITY));
+			particle.update(TIME_STEP);
 		}
 
 		window.clear(sf::Color::Black);

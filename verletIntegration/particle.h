@@ -9,10 +9,9 @@ public:
 	sf::Vector2f prevPos;
 	sf::Vector2f acceleration;
 
-	Particle(float x, float y) : pos(x, y), prevPos(x, y),
-		acceleration(x, y)
-	{
+	Particle(float x, float y);
 
-	}
+	void apply_force(const sf::Vector2f& force);
 
+	void update(float time_step);
 };
