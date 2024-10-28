@@ -71,6 +71,17 @@ int main()
 			window.draw(circle);
 		}
 
+		// Draw constraints as lines
+		for (const auto& constraint : constraints)
+		{
+			sf::Vertex line[] = {
+				sf::Vertex(constraint.p1->pos,sf::Color::White),
+				sf::Vertex(constraint.p2->pos, sf::Color::White)
+			};
+
+			window.draw(line, 2, sf::Lines);
+		}
+
 		window.display();
 	}
 }
