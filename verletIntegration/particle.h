@@ -16,5 +16,5 @@ public:
 
 	void update(float time_step);
 
-	void contrainToBounds(float width, float height, float radius);
+	void contrainToBounds(float width, float height);
 };

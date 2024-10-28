@@ -28,8 +28,8 @@ void Particle::update(float time_step)
 	}
 }
 
-void Particle::contrainToBounds(float width, float height, float radius)
+void Particle::contrainToBounds(float width, float height)
 {
-	pos.x = std::min(width - radius, std::max(radius, pos.x));
-	pos.y = std::min(height - radius, std::max(radius, pos.y));
+	pos.x = std::min(width, std::max(0.0f, pos.x));
+	pos.y = std::min(height, std::max(0.0f, pos.y));
 }

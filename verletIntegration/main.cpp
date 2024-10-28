@@ -6,7 +6,6 @@
 
 const int WIDTH = 1080;
 const int HEIGHT = 720;
-const float PARTICLE_RADIUS = 10.0f;
 const float GRAVITY = 9.8f;
 const float TIME_STEP = 0.1f;
 
@@ -71,7 +70,7 @@ int main()
 		{
 			particle.apply_force(sf::Vector2f(0, GRAVITY));
 			particle.update(TIME_STEP);
-			particle.contrainToBounds(WIDTH, HEIGHT, PARTICLE_RADIUS);
+			particle.contrainToBounds(WIDTH, HEIGHT);
 		}
 
 		for (size_t ii = 0; ii < 5; ii++)
@@ -87,12 +86,8 @@ int main()
 		// Draw particles
 		for (const auto& particle : particles)
 		{
-			sf::CircleShape circle(PARTICLE_RADIUS);
-			circle.setFillColor(sf::Color::White);
-			circle.setPosition(particle.pos.x - PARTICLE_RADIUS,
-								particle.pos.y - PARTICLE_RADIUS);
-			
-			window.draw(circle);
+			sf::Vertex point(particle.pos, sf::Color::White);
+			window.draw(&point, 1, sf::Points);
 		}
 
 		// Draw constraints as lines
