@@ -28,7 +28,8 @@ int main()
 		{
 			float x = col * REST_DIST + WIDTH / 3;
 			float y = row * REST_DIST + HEIGHT / 3;
-			particles.emplace_back(x, y);
+			bool pinned = (row == 0);
+			particles.emplace_back(x, y, pinned);
 		}
 	}
 

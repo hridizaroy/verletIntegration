@@ -16,6 +16,13 @@ void Constraint::satisfy()
 
 	sf::Vector2f correction = delta * 0.5f * diff;
 
-	p1->pos += correction;
-	p2->pos -= correction;
+	if (!p1->isPinned)
+	{
+		p1->pos += correction;
+	}
+	
+	if (!p2->isPinned)
+	{
+		p2->pos -= correction;
+	}
 }

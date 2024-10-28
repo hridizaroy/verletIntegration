@@ -8,8 +8,9 @@ public:
 	sf::Vector2f pos;
 	sf::Vector2f prevPos;
 	sf::Vector2f acceleration;
+	bool isPinned;
 
-	Particle(float x, float y);
+	Particle(float x, float y, bool pinned);
 
 	void apply_force(const sf::Vector2f& force);
 

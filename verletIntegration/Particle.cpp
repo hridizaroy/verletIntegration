@@ -1,25 +1,31 @@
 #include "Particle.h"
 
 
-Particle::Particle(float x, float y) :
-	pos(x, y), prevPos(x, y), acceleration(0, 0)
+Particle::Particle(float x, float y, bool pinned) :
+	pos(x, y), prevPos(x, y), acceleration(0, 0), isPinned(pinned)
 {
 
 }
 
 void Particle::apply_force(const sf::Vector2f& force)
 {
-	acceleration += force;
+	if (!isPinned)
+	{
+		acceleration += force;
+	}	
 }
 
 void Particle::update(float time_step)
 {
-	sf::Vector2f prevDist = pos - prevPos;
-	prevPos = pos;
+	if (!isPinned)
+	{
+		sf::Vector2f prevDist = pos - prevPos;
+		prevPos = pos;
 
-	pos += prevDist + acceleration * time_step * time_step;
+		pos += prevDist + acceleration * time_step * time_step;
 
-	acceleration = sf::Vector2f(0, 0); // reset
+		acceleration = sf::Vector2f(0, 0); // reset
+	}
 }
 
 void Particle::contrainToBounds(float width, float height, float radius)
