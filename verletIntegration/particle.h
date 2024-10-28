@@ -14,4 +14,6 @@ public:
 	void apply_force(const sf::Vector2f& force);
 
 	void update(float time_step);
+
+	void contrainToBounds(float width, float height, float radius);
 };

@@ -21,3 +21,9 @@ void Particle::update(float time_step)
 
 	acceleration = sf::Vector2f(0, 0); // reset
 }
+
+void Particle::contrainToBounds(float width, float height, float radius)
+{
+	pos.x = std::min(width - radius, std::max(radius, pos.x));
+	pos.y = std::min(height - radius, std::max(radius, pos.y));
+}
