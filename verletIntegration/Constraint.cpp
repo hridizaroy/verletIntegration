@@ -5,10 +5,17 @@ Constraint::Constraint(Particle* p1, Particle* p2):
 {
 	initial_length = std::hypot(p2->pos.x - p1->pos.x,
 						p2->pos.y - p1->pos.y);
+	
+	active = true;
 }
 
 void Constraint::satisfy()
 {
+	if (!active)
+	{
+		return;
+	}
+
 	sf::Vector2f delta = p2->pos - p1->pos;
 
 	float curr_length = std::hypot(delta.x, delta.y);
@@ -25,4 +32,9 @@ void Constraint::satisfy()
 	{
 		p2->pos -= correction;
 	}
+}
+
+void Constraint::deactivate()
+{
+	active = false;
 }
